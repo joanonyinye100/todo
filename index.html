@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Task Tracker</title>
+    <style>
+  
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+
+        li {
+            margin: 5px 0;
+        }
+        li:hover{
+            background-color: red;
+            width: 10%;
+        }
+
+
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Tracker</h1>
+    
+    <div>
+        <input type="text" id="task-input" placeholder="Add a new task" autofocus required>
+        <button id="add-task">Add Task</button>
+        <button onclick= "removeTask()">remove task </button>
+    </div>
+    <p id="resultContainer"></p>
+    
+    <ul id="task-list">
+        
+        
+      
+       
+    </ul>
+    <div>
+        <button id="completedTask">Completed task</button>
+    </div>
+    <div>
+        <label>Show completed tasks: <input type="checkbox" id="show-completed"></label>
+       
+        <p id=""></p>
+    </div>
+
+
+
+    <script >
+        // JavaScript code goes here
+        let taskInput = document.getElementById("task-input");
+        let addTaskButton = document.getElementById("add-task");
+       let taskList = document.getElementById("task-list");
+       let showCompleted = document.getElementById("show-completed");
+       let resultContainer = document.getElementById("resultContainer");
+       let completedTask = document.getElementById("completedTask");
+       completedTask.style.display = "none"
+       
+       
+      
+       addTaskButton.addEventListener("click", display);
+
+       let taskDatainfo = [];
+       function display(){
+        let task = taskInput.value;
+       
+        if (localStorage.getItem("taskDatainfo") == null) {
+        
+        taskDatainfo.push(task);
+
+        localStorage.setItem("taskDatainfo", JSON.stringify(taskDatainfo));
+        resultContainer.innerHTML = "task saved successfully";
+    } else {
+        let taskDatainfo = JSON.parse(localStorage.getItem("taskDatainfo"));
+        taskDatainfo.push(task);
+
+        localStorage.setItem("taskDatainfo", JSON.stringify(taskDatainfo));
+        resultContainer.innerHTML = "task saved successfully";
+    } 
+ 
+       }
+       function taskOption(){
+        taskList.innerHTML = "";
+            let taskDatainfo=JSON.parse(localStorage.getItem("taskDatainfo"));
+           
+            taskDatainfo.forEach(option =>{
+                const li = document.createElement("li");
+                li.innerHTML = `${option} `;
+                taskList.appendChild(li);
+                li.addEventListener("click", tasklistitem);
+            })
+        
+             }
+
+          function tasklistitem(event){
+            completedTask.style.display= "block"
+         let   todolist= event.target.textContent;
+         taskInput.value = todolist;
+         completedTask.addEventListener("click", function () {
+            complete(todolist)
+         })
+         
+
+          }
+          function complete(para){
+            let taskDatainfo=JSON.parse(localStorage.getItem("taskDatainfo"));
+
+          }
+          
+           
+
+
+      
+       showCompleted.addEventListener("click", check);
+       function check (){
+       
+
+       }
+    
+       
+   
+      taskOption();
+      
+   
+    </script>
+</body>
+</html>

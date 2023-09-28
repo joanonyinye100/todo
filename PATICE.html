@@ -1,0 +1,97 @@
+if (task !== "") {
+    let li =   document.createElement("li");
+       li.innerHTML = `
+               <input type="checkbox">${task}
+               <button> Remove task</button>`;
+
+        
+           taskList.appendChild(li);
+
+         
+           task = "";
+       }
+
+
+       function letter(apha){
+        for (let i = 0; i < apha.length; i++) {
+            const element = apha[i].length;
+            apha[i]= element;
+            
+            
+            
+        }
+        return apha;
+      }
+      for (let i = 0; i < task.length; i++) {
+        const element = task[i];
+        task = element[i]
+        li.innerHTML = `
+       <input type="checkbox">${task}
+       <button> Remove task</button>`;
+
+
+   taskList.appendChild(li);
+   console.log(taskdata)
+
+    }
+    
+
+
+
+    if (localStorage.getItem("quizData") == null) {
+        let quizData = [];
+        quizData.push({
+            question : question,
+            options : options,
+            correctAnswer : correctAnswer
+        });
+
+        localStorage.setItem("quizData", JSON.stringify(quizData));
+        resultContainer.innerHTML = "Question saved successfully";
+    } else {
+        let quizData = JSON.parse(localStorage.getItem("quizData"));
+        quizData.push({
+            question : question,
+            options : options,
+            correctAnswer : correctAnswer
+        });
+
+        localStorage.setItem("quizData", JSON.stringify(quizData));
+        resultContainer.innerHTML = "Question saved successfully";
+    }
+ else {
+    resultContainer.innerHTML = "All fields are required";
+}
+
+
+
+       <li class="taskOption"> <input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       <li class="taskOption"><input type="checkbox"></li>
+       taskList.innerHTML = "";
+       let task = taskInput;
+       let taskData =JSON.parse(localStorage.getItem("taskData"));
+       taskData.forEach(option =>{
+           const li = document.createElement("li");
+           li.innerHTML = option;
+           taskList.appendChild(li);
+       })
+
+
+
+
+       function taskOption(){
+            
+        let taskData1=JSON.parse(localStorage.getItem("taskData"));
+        taskList.innerHTML = "";
+        taskData1.forEach(option =>{
+            const li = document.createElement("li");
+            li.innerHTML = ` <input type= "checkbox">${option} <button onclick= "removeTask">remove task </button>`;
+            taskList.appendChild(li);
+        })
+         }
